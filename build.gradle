@@ -1,0 +1,34 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id "org.sonarqube" version "2.7"
+}
+
+group = 'com.example.sonar'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+sonarqube {
+	properties {
+		System.setProperty("sonar.projectKey","spring-demo")
+		System.setProperty("sonar.host.url", "http://sonarqube:9000"); //TODO
+		System.setProperty("sonar.login", "6f8038ba645787335d5a814805ea8e54252df214"); //TODO
+		System.setProperty("sonar.sourceEncoding","UTF-8")
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
