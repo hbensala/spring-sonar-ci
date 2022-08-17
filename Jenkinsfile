@@ -10,8 +10,10 @@ pipeline {
           }
           steps {
                 withSonarQubeEnv('sonarqube') {
-                    echo ">> currentBuild: ${currentBuild}"
+                    echo ">> currentBuild started: ${currentBuild}"
+                    sh "gradle wrapper --no-daemon"
                     sh "./gradlew sonarqube --no-daemon"
+                    echo ">> currentBuild done"
                 }
           }
 
